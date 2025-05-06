@@ -1,7 +1,7 @@
 {
-  "error": {
-    "$t": "Invalid league ID 12345"
-  },
   "version": "1.0",
+  "error": {
+    "$t": "Invalid league ID 48963"
+  },
   "encoding": "utf-8"
 }
