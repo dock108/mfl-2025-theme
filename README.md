@@ -38,6 +38,14 @@ The theme assets are served from GitHub Pages at the following URLs:
 
 > **Note:** Replace `GITHUB_USERNAME` with your actual GitHub username.
 
+### Enabling GitHub Pages for this Repository
+
+1. Go to the repository settings on GitHub
+2. Navigate to "Pages" in the left sidebar
+3. Under "Build and deployment", set:
+   - Source: "GitHub Actions"
+4. The `deploy.yml` workflow will handle deploying the `dist` directory
+
 ## For League Commissioners
 
 ### Installing the Theme
