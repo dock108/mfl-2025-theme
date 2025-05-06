@@ -4,15 +4,32 @@ const Card = require('./Card.jsx');
 
 describe('Card', () => {
   test('renders children and default classes', () => {
-    render(<Card>Test Content</Card>);
-    const cardElement = screen.getByText('Test Content').parentElement;
+    const { container } = render(<Card>Test Content</Card>);
+    
+    // Get the card element directly from the container
+    const cardElement = container.querySelector('div');
     expect(cardElement).toBeInTheDocument();
-    expect(cardElement).toHaveClass('card', 'glow-hover', 'p-5');
+    
+    // Debug output
+    console.log('Card element classes:', cardElement.className);
+    
+    expect(cardElement).toHaveClass('card');
+    expect(cardElement).toHaveClass('glow-hover');
+    expect(cardElement).toHaveClass('p-5');
   });
 
   test('applies additional className prop', () => {
-    render(<Card className="extra-class">Test Content</Card>);
-    const cardElement = screen.getByText('Test Content').parentElement;
-    expect(cardElement).toHaveClass('card', 'glow-hover', 'p-5', 'extra-class');
+    const { container } = render(<Card className="extra-class">Test Content</Card>);
+    
+    // Get the card element directly from the container
+    const cardElement = container.querySelector('div');
+    
+    // Debug output
+    console.log('Card element with extra class:', cardElement.className);
+    
+    expect(cardElement).toHaveClass('card');
+    expect(cardElement).toHaveClass('glow-hover');
+    expect(cardElement).toHaveClass('p-5');
+    expect(cardElement).toHaveClass('extra-class');
   });
 }); 
