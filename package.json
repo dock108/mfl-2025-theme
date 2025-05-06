@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx --package tailwindcss tailwindcss -i src/styles/placeholder.css -o dist/main.css --watch",
-    "build": "NODE_ENV=production npx --package tailwindcss tailwindcss -i src/styles/placeholder.css -o dist/main.css --minify && cp src/placeholder.js dist/main.js",
+    "build": "NODE_ENV=production npx --package tailwindcss tailwindcss -i src/styles/placeholder.css -o dist/main.css --minify && cp src/placeholder.js dist/main.js && cp src/layout.html dist/index.html",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest",
     "e2e": "playwright test",
@@ -52,6 +52,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^26.1.0",
     "playwright": "^1.52.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",

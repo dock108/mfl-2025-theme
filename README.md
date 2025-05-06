@@ -18,6 +18,10 @@ Monorepo for the MFL 2025 theme.
    npm run dev
    ```
 
+## Previewing the Layout
+
+After running `npm run build`, you can preview the basic HTML layout by opening `dist/index.html` in your web browser.
+
 ## Scripts
 
 | Script            | Description                                                                 |
@@ -74,7 +78,9 @@ This will remove the default MFL styling and allow our custom theme to take effe
 .github/
   workflows/
     ci.yml         # GitHub Actions CI configuration
+    deploy.yml     # GitHub Actions deployment to Pages configuration
 dist/
+  index.html      # Main HTML layout for preview
   main.css        # Compiled CSS for production
   main.js         # JavaScript for production
 node_modules/
@@ -83,6 +89,9 @@ snippets/
   header.hpm.html # Ready-to-use HTML for MFL Header HPM
 src/
   components/       # React components
+  layout.html       # Main HTML skeleton
+  layout.stories.js # Storybook story for the layout shell
+  layout.test.js    # Jest test for the layout HTML
   styles/
     index.css     # Main Tailwind CSS input file
     placeholder.css # Minimal CSS for initial deployment
