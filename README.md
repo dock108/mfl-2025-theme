@@ -110,6 +110,26 @@ Several global utility classes and component styles are defined in `src/styles/i
 - `.pill`: Pill-shaped element, often for tags or categories (`bg-card`, `text-text`, `border-alt`).
   Example: `<span class="pill">Category</span>`
 
+## Responsive Navigation (Burger Menu)
+
+The header navigation is responsive:
+- On small screens (less than `sm` breakpoint defined by Tailwind, typically 640px), a "burger" button (`#burgerBtn`) is shown.
+- Clicking the burger button toggles the visibility of the main navigation menu (`#mainNav`).
+- The navigation menu stacks vertically on mobile.
+- On larger screens (`sm` and up), the burger button is hidden, and the navigation menu is displayed horizontally.
+
+### How it Works
+- Logic is handled in `src/main.js`.
+- The script listens for clicks on `#burgerBtn`.
+- It toggles the `hidden` and `flex` (or other display utility) classes on `#mainNav`.
+- `aria-expanded` attribute on `#burgerBtn` is updated to reflect the state of the navigation menu, aiding accessibility.
+- Focus styles (`focus:outline-none focus:ring-2 focus:ring-accent`) are applied to the burger button for keyboard navigation.
+
+### Active Link Highlighting
+- `src/main.js` also includes a helper function (`MFL_setActiveLink`) that highlights the active navigation link based on the current `window.location.hash`.
+- It adds the `text-accent` class to the active link and ensures other links use `text-text`.
+- This runs on initial page load and whenever the URL hash changes.
+
 ## Folder Structure
 
 ```
@@ -130,6 +150,8 @@ src/
   layout.html       # Main HTML skeleton
   layout.stories.js # Storybook story for the layout shell
   layout.test.js    # Jest test for the layout HTML
+  main.js           # Main JavaScript file (burger menu, active links)
+  main.test.js      # Jest tests for main.js
   styles/
     index.css     # Main Tailwind CSS input file
     placeholder.css # Minimal CSS for initial deployment

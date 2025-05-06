@@ -1,5 +1,5 @@
 // Simpler approach: Define functions globally for access, then wrap calls in DOMContentLoaded.
-function MFL_setActiveLink() {
+function mflSetActivLink() {
   const mainNav = document.getElementById('mainNav'); // Re-query mainNav here
   const currentHash = window.location.hash;
   const navLinks = mainNav ? mainNav.querySelectorAll('a') : [];
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (burgerBtn && mainNav) {
     burgerBtn.addEventListener('click', () => {
       // Corrected aria-expanded logic: toggle current state string to its opposite boolean, then back to string.
-      let currentExpandedState = burgerBtn.getAttribute('aria-expanded') === 'true';
+      const currentExpandedState = burgerBtn.getAttribute('aria-expanded') === 'true';
       burgerBtn.setAttribute('aria-expanded', !currentExpandedState);
       mainNav.classList.toggle('hidden');
       mainNav.classList.toggle('flex');
@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial and on-change calls for setActiveLink
   if (document.getElementById('mainNav')) { // Check if mainNav exists in current DOM
-      MFL_setActiveLink();
-      window.addEventListener('hashchange', MFL_setActiveLink);
+      mflSetActivLink();
+      window.addEventListener('hashchange', mflSetActivLink);
   }
 });
 
@@ -45,6 +45,6 @@ console.log('MFL theme main.js loaded');
 // Expose for testing if in test environment (e.g., JSDOM is present)
 if (typeof window !== 'undefined') { 
     window.testingHooks = {
-        setActiveLink: MFL_setActiveLink // Expose the global version
+        setActiveLink: mflSetActivLink // Expose the global version
     };
 } 

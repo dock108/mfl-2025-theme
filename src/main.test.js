@@ -46,7 +46,7 @@ describe('setActiveLink', () => {
     if (window.testingHooks && typeof window.testingHooks.setActiveLink === 'function') {
       setActiveLinkFn = window.testingHooks.setActiveLink;
     } else {
-      throw new Error('MFL_setActiveLink function not found. Check main.js and test setup.');
+      throw new Error('mflSetActivLink function not found. Check main.js and test setup.');
     }
     
     // Reset hash for each test

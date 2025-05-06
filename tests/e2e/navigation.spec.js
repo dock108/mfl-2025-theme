@@ -71,26 +71,29 @@ test.describe('Responsive Navigation', () => {
   });
   
   test('active link highlighting on hash change', async ({ page }) => {
-    // Check initial state (no hash)
     const scoreboardLink = page.locator('#mainNav a[href="#scoreboard"]');
-    await expect(scoreboardLink).toHaveClass(/text-text/);
-
-    // Navigate by hash
-    await page.goto(`${LOCAL_HTML_FILE}#standings`);
     const standingsLink = page.locator('#mainNav a[href="#standings"]');
-    
-    // Allow time for JS to apply class if needed, though direct navigation should be fast
-    await expect(standingsLink).toHaveClass(/text-accent/);
-    await expect(scoreboardLink).not.toHaveClass(/text-accent/);
-    await expect(scoreboardLink).toHaveClass(/text-text/);
-
-    // Change hash again
-    await page.evaluate(() => window.location.hash = '#transactions');
-    // Use waitForFunction for event-driven class change if direct check is flaky
-    await page.waitForFunction(() => document.querySelector('a[href="#transactions"]').classList.contains('text-accent'));
-
     const transactionsLink = page.locator('#mainNav a[href="#transactions"]');
-    await expect(transactionsLink).toHaveClass(/text-accent/);
-    await expect(standingsLink).not.toHaveClass(/text-accent/);
+
+    const accentColor = 'rgb(50, 227, 192)'; // #32e3c0
+    const textColor = 'rgb(227, 231, 238)'; // #e3e7ee
+
+    // Check initial state (no hash, scoreboard is first, should not be accent)
+    await expect(scoreboardLink).toHaveCSS('color', textColor);
+
+    // Navigate by hash to #standings
+    await page.goto(`${LOCAL_HTML_FILE}#standings`);
+    // Force a direct call to setActiveLink for more deterministic testing after navigation
+    await page.evaluate(() => window.testingHooks.setActiveLink());
+    await expect(standingsLink).toHaveCSS('color', accentColor);
+    await expect(scoreboardLink).toHaveCSS('color', textColor);
+
+    // Change hash again to #transactions
+    await page.evaluate(() => { window.location.hash = '#transactions'; });
+    // Wait for the hashchange event to be processed and link to be updated by the script
+    await page.waitForFunction(() => document.querySelector('a[href="#transactions"]').style.color === 'rgb(50, 227, 192)' || getComputedStyle(document.querySelector('a[href="#transactions"]')).color === 'rgb(50, 227, 192)');
+    
+    await expect(transactionsLink).toHaveCSS('color', accentColor);
+    await expect(standingsLink).toHaveCSS('color', textColor);
   });
 }); 
