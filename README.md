@@ -33,10 +33,8 @@ Monorepo for the MFL 2025 theme.
 
 The theme assets are served from GitHub Pages at the following URLs:
 
-- CSS: `https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.css`
-- JavaScript: `https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.js`
-
-> **Note:** Replace `GITHUB_USERNAME` with your actual GitHub username.
+- CSS: `https://dock108.github.io/mfl-2025-theme/main.css`
+- JavaScript: `https://dock108.github.io/mfl-2025-theme/main.js`
 
 ### Enabling GitHub Pages for this Repository
 
@@ -56,11 +54,9 @@ The theme assets are served from GitHub Pages at the following URLs:
 4. Paste the following code into the module:
 
 ```html
-<link rel="stylesheet" href="https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.css">
-<script src="https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.js" defer></script>
+<link rel="stylesheet" href="https://dock108.github.io/mfl-2025-theme/main.css">
+<script src="https://dock108.github.io/mfl-2025-theme/main.js" defer></script>
 ```
-
-> **Note:** Replace `GITHUB_USERNAME` with the actual GitHub username where this theme is hosted.
 
 5. Click "Update Module" to save your changes
 
