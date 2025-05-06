@@ -1,7 +1,5 @@
 {
-  "encoding": "utf-8",
-  "error": {
-    "$t": "Invalid league ID 48963"
-  },
-  "version": "1.0"
+  "version": "1.0",
+  "accounting": {},
+  "encoding": "utf-8"
 }
