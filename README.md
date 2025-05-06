@@ -130,6 +130,33 @@ The header navigation is responsive:
 - It adds the `text-accent` class to the active link and ensures other links use `text-text`.
 - This runs on initial page load and whenever the URL hash changes.
 
+## Component Library
+
+Reusable UI components are located in `src/components/` and are showcased in Storybook.
+
+### Card (`Card.jsx`)
+A wrapper component for content sections.
+- Applies `.card`, `.glow-hover`, and `.p-5` classes.
+- Usage: `<Card>Your content here</Card>`
+
+### Button (`Button.jsx`)
+A primary call-to-action button.
+- Uses the `.btn-primary` global style.
+- Supports `disabled` state and other standard button props.
+- Usage: `<Button onClick={handleClick} disabled={false}>Click Me</Button>`
+
+### Badge (`Badge.jsx`)
+For small labels or status indicators.
+- Default style uses the global `.badge` class.
+- `variant="accent"` provides an alternative style with accent background.
+- Usage: `<Badge variant="accent">New</Badge>`
+
+### ProbBar (`ProbBar.jsx`)
+A horizontal bar to display a percentage or probability.
+- Takes a `percentage` prop (0-100).
+- Uses `.deg-bar` for the background and an accent-colored inner bar.
+- Usage: `<ProbBar percentage={75} />`
+
 ## Folder Structure
 
 ```
@@ -146,7 +173,24 @@ node_modules/
 snippets/
   header.hpm.html # Ready-to-use HTML for MFL Header HPM
 src/
-  components/       # React components
+  components/
+    Badge.jsx
+    Badge.stories.jsx
+    Badge.test.jsx
+    Button.jsx
+    Button.stories.jsx
+    Button.test.jsx
+    Card.jsx
+    Card.stories.jsx
+    Card.test.jsx
+    HelloCard.jsx             # Existing dummy component
+    HelloCard.stories.jsx     # Existing dummy component story
+    HelloCard.test.jsx        # Existing dummy component test
+    ProbBar.jsx
+    ProbBar.stories.jsx
+    ProbBar.test.jsx
+    ResponsiveNav.stories.js  # Story for header nav (might be refactored or part of layout stories)
+  global-styles.test.js # Test for global CSS utilities
   layout.html       # Main HTML skeleton
   layout.stories.js # Storybook story for the layout shell
   layout.test.js    # Jest test for the layout HTML
@@ -154,8 +198,6 @@ src/
   main.test.js      # Jest tests for main.js
   styles/
     index.css     # Main Tailwind CSS input file
-    placeholder.css # Minimal CSS for initial deployment
-  placeholder.js    # Minimal JS for initial deployment
 .eslintrc.js        # ESLint configuration
 .gitignore          # Git ignore rules
 .prettierrc.js      # Prettier configuration

@@ -42,10 +42,10 @@ describe('Layout HTML (docs/index.html)', () => {
   });
 
   test('should link to main.css and main.js', () => {
-    const cssLink = document.querySelector('link[href="../docs/main.css"]');
+    const cssLink = document.querySelector('link[href="main.css"]');
     expect(cssLink).not.toBeNull();
 
-    const jsScript = document.querySelector('script[src="../docs/main.js"]');
+    const jsScript = document.querySelector('script[src="main.js"]');
     expect(jsScript).not.toBeNull();
     expect(jsScript.defer).toBe(true);
   });
