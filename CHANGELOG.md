@@ -17,4 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Embed code snippet for league commissioners.
 - Added HTML skeleton (`layout.html`) with basic structure.
 - Added global Tailwind theme configuration (colors, fonts) and utility classes (.card, .btn-primary, etc.).
-- Implemented responsive header navigation with burger menu and active link highlighting. 
+- Implemented responsive header navigation with burger menu and active link highlighting.
+
+### Changed
+- Build output directory switched from `/dist` to `/docs` for compatibility with GitHub Pages "Deploy from branch" option. 

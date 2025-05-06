@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('jsdom');
 
-describe('Layout HTML (dist/index.html)', () => {
+describe('Layout HTML (docs/index.html)', () => {
   let dom;
   let document;
 
   beforeAll(() => {
-    // Run the build script to ensure dist/index.html is up-to-date
+    // Run the build script to ensure docs/index.html is up-to-date
     // This is a bit unconventional for a unit test but necessary here
     // to test the output of the build process.
     const { execSync } = require('child_process');
@@ -18,13 +18,13 @@ describe('Layout HTML (dist/index.html)', () => {
       console.error('Error running npm run build for layout test:', error.stdout.toString());
     }
 
-    const htmlPath = path.resolve(__dirname, '../dist/index.html');
+    const htmlPath = path.resolve(__dirname, '../docs/index.html');
     let htmlContent;
     try {
       htmlContent = fs.readFileSync(htmlPath, 'utf8');
     } catch (error) {
       // Handle case where file doesn't exist after build attempt
-      console.error(`Could not read dist/index.html. Ensure 'npm run build' runs successfully and creates this file. Error: ${error.message}`);
+      console.error(`Could not read docs/index.html. Ensure 'npm run build' runs successfully and creates this file. Error: ${error.message}`);
       // Create a minimal HTML structure to prevent JSDOM from failing if the file is missing, allowing other tests to proceed.
       htmlContent = '<html><body></body></html>'; 
     }
@@ -42,10 +42,10 @@ describe('Layout HTML (dist/index.html)', () => {
   });
 
   test('should link to main.css and main.js', () => {
-    const cssLink = document.querySelector('link[href="../dist/main.css"]');
+    const cssLink = document.querySelector('link[href="../docs/main.css"]');
     expect(cssLink).not.toBeNull();
 
-    const jsScript = document.querySelector('script[src="../dist/main.js"]');
+    const jsScript = document.querySelector('script[src="../docs/main.js"]');
     expect(jsScript).not.toBeNull();
     expect(jsScript.defer).toBe(true);
   });

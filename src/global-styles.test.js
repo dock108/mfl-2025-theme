@@ -15,20 +15,20 @@ describe('Global Styles and Utilities', () => {
       console.error('Error running npm run build for styles test:', error.stdout.toString());
     }
 
-    const htmlPath = path.resolve(__dirname, '../dist/index.html');
-    const cssPath = path.resolve(__dirname, '../dist/main.css'); // For referencing CSS content
+    const htmlPath = path.resolve(__dirname, '../docs/index.html');
+    const cssPath = path.resolve(__dirname, '../docs/main.css'); // For referencing CSS content
     let htmlContent = '<html><head></head><body></body></html>'; // Default if file not found
     let cssContent = '';
 
     try {
       htmlContent = fs.readFileSync(htmlPath, 'utf8');
     } catch (error) {
-      console.error(`Could not read dist/index.html: ${error.message}`);
+      console.error(`Could not read docs/index.html: ${error.message}`);
     }
     try {
       cssContent = fs.readFileSync(cssPath, 'utf8');
     } catch (error) {
-      console.error(`Could not read dist/main.css: ${error.message}`);
+      console.error(`Could not read docs/main.css: ${error.message}`);
     }
 
     // Create a JSDOM instance

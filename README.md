@@ -20,7 +20,7 @@ Monorepo for the MFL 2025 theme.
 
 ## Previewing the Layout
 
-After running `npm run build`, you can preview the basic HTML layout by opening `dist/index.html` in your web browser.
+After running `npm run build`, you can preview the basic HTML layout by opening `docs/index.html` in your web browser.
 
 ## Scripts
 
@@ -46,7 +46,7 @@ The theme assets are served from GitHub Pages at the following URLs:
 2. Navigate to "Pages" in the left sidebar
 3. Under "Build and deployment", set:
    - Source: "GitHub Actions"
-4. The `deploy.yml` workflow will handle deploying the `dist` directory
+4. The `deploy.yml` workflow will handle deploying the `docs` directory
 
 ## For League Commissioners
 
@@ -137,7 +137,7 @@ The header navigation is responsive:
   workflows/
     ci.yml         # GitHub Actions CI configuration
     deploy.yml     # GitHub Actions deployment to Pages configuration
-dist/
+docs/             # Build output directory for GitHub Pages
   index.html      # Main HTML layout for preview
   main.css        # Compiled CSS for production
   main.js         # JavaScript for production

@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 // Path to the local HTML file. Adjust if your server setup is different.
 // This assumes you run tests from the project root.
-const LOCAL_HTML_FILE = 'file://' + require('path').resolve(__dirname, '../../dist/index.html');
+const LOCAL_HTML_FILE = 'file://' + require('path').resolve(__dirname, '../../docs/index.html');
 
 test.describe('Responsive Navigation', () => {
   test.beforeEach(async ({ page }) => {

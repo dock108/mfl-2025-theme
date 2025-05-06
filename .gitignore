@@ -1,6 +1,6 @@
 # Node
 node_modules/
-dist/
+# dist/ (Removed as build output is now /docs and committed for GH Pages)
 npm-debug.log
 yarn-debug.log
 yarn-error.log
