@@ -8,7 +8,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
+  plugins: ['react'],
   rules: {
   },
 }; 

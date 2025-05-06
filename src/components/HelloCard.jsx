@@ -1,4 +1,4 @@
-import React from 'react';
+const React = require('react');
 
 function HelloCard() {
   return (
@@ -17,4 +17,6 @@ function HelloCard() {
   );
 }
 
-export default HelloCard; 
+module.exports = {
+  default: HelloCard,
+}; 

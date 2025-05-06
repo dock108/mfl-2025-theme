@@ -1,7 +1,7 @@
-import React from 'react';
-import HelloCard from './HelloCard';
+const React = require('react');
+const HelloCard = require('./HelloCard').default;
 
-export default {
+module.exports = {
   title: 'Components/HelloCard',
   component: HelloCard,
   parameters: {
@@ -14,5 +14,5 @@ export default {
 
 const Template = (args) => <HelloCard {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {}; 
+module.exports.Default = Template.bind({});
+module.exports.Default.args = {}; 
