@@ -200,6 +200,42 @@ To get the automated, scheduled data fetching via Netlify Functions:
     *   **Value:** Your MFL league ID (e.g., `12345`)
 4.  Netlify will automatically build your site from the `docs` directory and deploy the function from `netlify/functions`. The scheduled execution of the function is defined by its cron pattern (see comments in `fetch-mfl.js` and `netlify.toml` for guidance on setting this up if not done automatically via a UI).
 
+## 🟢 Live Scoreboard Module
+
+The theme includes a live scoreboard that replaces MFL's native live scoring interface. It displays matchups with team names, logos (placeholders if not available from MFL), current scores, a win probability bar, and a fake "Vegas" line.
+
+### Features:
+-   **Live Updates:** Scores automatically refresh at the interval defined in `src/config.js` (default is every 30 seconds for scores).
+-   **Win Probability & Line:** A helper function in `src/lib/vegas.js` calculates:
+    -   **Win Probability:** Based on the current score differential using a logistic formula. Tuned so a 7-point lead gives the leading team approximately 73% win probability.
+    -   **Vegas Line:** A simplified spread, typically half the point difference, rounded to the nearest 0.5 (e.g., "Team A -3.5").
+-   **Responsive Design:** Adapts to different screen sizes (1-column on mobile, 2 on medium screens, 3 on larger screens).
+-   **Visual Flair:** Uses the theme's `Card` component and `ProbBar` for a modern look. Score changes and hover effects are animated.
+
+### Screenshot Placeholder
+
+```
++--------------------------------------------------------------------+
+|                                                                    |
+|  [ Team A Logo ]  Team A Name                 105.75 (Live)        |
+|  [ Team B Logo ]  Team B Name                   98.50               |
+|  +----------------------------------------+                        |
+|  | WWWWWWWWWWWWWWWWWWWWWWWWWWWWP          | (Win Prob: 60%)        |
+|  +----------------------------------------+                        |
+|                     Team A -3.5                                    |
+|  Live                                           [Game Detail Link] |
+|                                                                    |
++--------------------------------------------------------------------+
+  ( ... more matchup cards ... )
+```
+*(A real screenshot should be added here once the module is visually complete and deployed.)*
+
+### How it Works:
+1.  The `Scoreboard` React component (`src/modules/Scoreboard.jsx`) is rendered into the `#scoreboard` div in the main HTML layout.
+2.  It uses the `getScores()` function from `src/lib/mflApi.js` to fetch the latest `scores.json` data from the cached location (e.g., GitHub Pages via Netlify function updates).
+3.  For each matchup, it displays team information and uses `calculateVegasLine()` to generate the win probability and line.
+4.  CSS in `src/styles/index.css` hides MFL's default live scoring tables.
+
 ## Component Library
 
 Reusable UI components are located in `

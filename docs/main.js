@@ -1,3 +1,8 @@
+const React = require('react');
+// const ReactDOM = require('react-dom'); // Old way
+const { createRoot } = require('react-dom/client'); // New way for React 18
+const Scoreboard = require('./modules/Scoreboard.jsx'); // Adjust path as needed
+
 // Simpler approach: Define functions globally for access, then wrap calls in DOMContentLoaded.
 function mflSetActivLink() {
   const mainNav = document.getElementById('mainNav'); // Re-query mainNav here
@@ -25,11 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (burgerBtn && mainNav) {
     burgerBtn.addEventListener('click', () => {
-      // Corrected aria-expanded logic: toggle current state string to its opposite boolean, then back to string.
-      const currentExpandedState = burgerBtn.getAttribute('aria-expanded') === 'true';
-      burgerBtn.setAttribute('aria-expanded', !currentExpandedState);
+      const isExpanded = burgerBtn.getAttribute('aria-expanded') === 'true';
       mainNav.classList.toggle('hidden');
-      mainNav.classList.toggle('flex');
+      mainNav.classList.toggle('flex'); // Or your specific display class for mobile nav
+      burgerBtn.setAttribute('aria-expanded', String(!isExpanded));
     });
   }
 
@@ -38,9 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
       mflSetActivLink();
       window.addEventListener('hashchange', mflSetActivLink);
   }
+
+  // Render Scoreboard
+  const scoreboardContainer = document.getElementById('scoreboard');
+  if (scoreboardContainer) {
+    console.log('Rendering Scoreboard module with createRoot...');
+    const root = createRoot(scoreboardContainer);
+    root.render(React.createElement(Scoreboard));
+  } else {
+    console.warn('#scoreboard container not found in layout.html. Scoreboard will not be rendered.');
+  }
+
+  // Any other React modules can be rendered here in their respective containers
 });
 
-console.log('MFL theme main.js loaded');
+console.log('MFL theme main.js loaded - updated with React 18 createRoot and scoreboard.');
 
 // Expose for testing if in test environment (e.g., JSDOM is present)
 if (typeof window !== 'undefined') { 

@@ -23,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Implemented serverless data caching with Netlify Functions (`netlify/functions/fetch-mfl.js`) and a GitHub Actions fallback (`.github/workflows/cache.yml`, `scripts/fetch-mfl-data.js`).
 - Added a client-side fetch wrapper (`src/lib/mflApi.js`) to consume cached data, with corresponding Jest and Playwright tests.
 - Updated `src/config.example.js` with `CACHE_BASE_URL`.
+- Added Scoreboard module (`src/modules/Scoreboard.jsx`) with live score updates, win probability (`src/lib/vegas.js`), and styling.
+- Integrated Scoreboard into `main.js` and added CSS to hide MFL native live scoring.
+- Added Jest tests for `vegas.js` and `Scoreboard.jsx`, Playwright E2E tests for Scoreboard, and a Storybook story.
 
 ### Changed
 - Build output directory switched from `/dist`
