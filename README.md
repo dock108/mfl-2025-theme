@@ -29,6 +29,41 @@ Monorepo for the MFL 2025 theme.
 | `npm run e2e`       | Runs Playwright end-to-end tests.                                           |
 | `npm run storybook` | Starts Storybook for component development.                                 |
 
+## Live Theme Assets
+
+The theme assets are served from GitHub Pages at the following URLs:
+
+- CSS: `https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.css`
+- JavaScript: `https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.js`
+
+> **Note:** Replace `GITHUB_USERNAME` with your actual GitHub username.
+
+## For League Commissioners
+
+### Installing the Theme
+
+1. Log in to your MFL league as a commissioner
+2. Go to "Setup" > "Customize" > "HTML Page Modules"
+3. Find the "Header" module in the list and click "Edit"
+4. Paste the following code into the module:
+
+```html
+<link rel="stylesheet" href="https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.css">
+<script src="https://GITHUB_USERNAME.github.io/mfl-2025-theme/main.js" defer></script>
+```
+
+> **Note:** Replace `GITHUB_USERNAME` with the actual GitHub username where this theme is hosted.
+
+5. Click "Update Module" to save your changes
+
+### Setting League Skin to None
+
+1. Go to "Setup" > "Customize" > "Site Appearance"
+2. In the "MFL Skin" dropdown menu, select "None"
+3. Click "Update Settings" to save your changes
+
+This will remove the default MFL styling and allow our custom theme to take effect.
+
 ## Folder Structure
 
 ```
@@ -36,13 +71,18 @@ Monorepo for the MFL 2025 theme.
   workflows/
     ci.yml         # GitHub Actions CI configuration
 dist/
-                  # Compiled CSS output
+  main.css        # Compiled CSS for production
+  main.js         # JavaScript for production
 node_modules/
                   # Project dependencies
+snippets/
+  header.hpm.html # Ready-to-use HTML for MFL Header HPM
 src/
   components/       # React components
   styles/
     index.css     # Main Tailwind CSS input file
+    placeholder.css # Minimal CSS for initial deployment
+  placeholder.js    # Minimal JS for initial deployment
 .eslintrc.js        # ESLint configuration
 .gitignore          # Git ignore rules
 .prettierrc.js      # Prettier configuration

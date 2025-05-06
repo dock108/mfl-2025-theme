@@ -11,4 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Build stack: Tailwind CLI, PostCSS + Autoprefixer, ESLint + Prettier, Jest, Playwright, Storybook.
 - Basic scripts in `package.json` for development, build, lint, test, e2e, and Storybook.
 - GitHub Actions workflow for CI.
-- Initial `README.md` and `CHANGELOG.md`. 
+- Initial `README.md` and `CHANGELOG.md`.
+- Placeholder CSS and JavaScript for live deployment.
+- GitHub Pages configuration for hosting theme assets.
+- Embed code snippet for league commissioners. 
