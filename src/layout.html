@@ -7,28 +7,31 @@
     <link rel="stylesheet" href="../dist/main.css">
 </head>
 <body>
-    <header>
-        <div class="logo-slot">[Logo]</div>
-        <nav>
-            <ul>
-                <li><a href="#scoreboard">Scoreboard</a></li>
-                <li><a href="#standings">Standings</a></li>
-                <li><a href="#transactions">Transactions</a></li>
-                <li><a href="#waivers">Waivers</a></li>
-                <li><a href="#cta">CTA Section</a></li>
+    <header class="flex justify-between items-center p-4 bg-alt">
+        <div class="logo-slot text-text text-xl font-bold">[Logo]</div>
+        <button id="burgerBtn" class="sm:hidden p-2 text-text text-xl focus:outline-none focus:ring-2 focus:ring-accent" aria-expanded="false" aria-label="Toggle navigation">
+            ☰
+        </button>
+        <nav id="mainNav" class="hidden sm:flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-sm uppercase tracking-wider">
+            <ul class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                <li><a href="#scoreboard" class="text-text hover:text-accent p-2">Scoreboard</a></li>
+                <li><a href="#standings" class="text-text hover:text-accent p-2">Standings</a></li>
+                <li><a href="#transactions" class="text-text hover:text-accent p-2">Transactions</a></li>
+                <li><a href="#waivers" class="text-text hover:text-accent p-2">Waivers</a></li>
+                <li><a href="#cta" class="text-text hover:text-accent p-2">CTA Section</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <div id="scoreboard"></div>
-        <div id="standings"></div>
-        <div id="transactions"></div>
-        <div id="waivers"></div>
-        <div id="cta"></div>
+    <main class="p-4">
+        <div id="scoreboard" class="min-h-[200px] p-4 my-4 card">Scoreboard Content</div>
+        <div id="standings" class="min-h-[200px] p-4 my-4 card">Standings Content</div>
+        <div id="transactions" class="min-h-[200px] p-4 my-4 card">Transactions Content</div>
+        <div id="waivers" class="min-h-[200px] p-4 my-4 card">Waivers Content</div>
+        <div id="cta" class="min-h-[200px] p-4 my-4 card">CTA Content</div>
     </main>
 
-    <footer>
+    <footer class="text-center p-4 text-sm">
         <p>&copy; 2025 MFL League. All rights reserved.</p>
     </footer>
 

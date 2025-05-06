@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx --package tailwindcss tailwindcss -i src/styles/index.css -o dist/main.css --watch",
-    "build": "NODE_ENV=production npx --package tailwindcss tailwindcss -i src/styles/index.css -o dist/main.css --minify && cp src/placeholder.js dist/main.js && cp src/layout.html dist/index.html",
+    "build": "NODE_ENV=production npx --package tailwindcss tailwindcss -i src/styles/index.css -o dist/main.css --minify && cp src/main.js dist/main.js && cp src/layout.html dist/index.html",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest",
     "e2e": "playwright test",
