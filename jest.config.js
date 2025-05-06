@@ -4,6 +4,9 @@ module.exports = {
     '@testing-library/jest-dom',
     '<rootDir>/jest.setup.js'
   ],
+  testMatch: [
+    '**/src/**/*.test.js', // Look for .test.js files only within src
+  ],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$       ': 'identity-obj-proxy',
   },
