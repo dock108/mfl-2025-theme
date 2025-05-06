@@ -7,6 +7,7 @@ describe('placeholder.js', () => {
     console.log = jest.fn();
     
     // Import the module which should call console.log
+    // eslint-disable-next-line import/extensions
     require('./placeholder.js');
     
     // Check if console.log was called with the expected message

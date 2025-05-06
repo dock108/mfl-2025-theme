@@ -1,5 +1,5 @@
 const React = require('react');
-const HelloCard = require('./HelloCard').default;
+const HelloCard = require('./HelloCard.jsx').default;
 
 module.exports = {
   title: 'Components/HelloCard',
