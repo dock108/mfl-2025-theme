@@ -24,3 +24,4 @@ storybook-static/
 .Trashes
 ehthumbs.db
 Thumbs.db 
+*storybook.log
