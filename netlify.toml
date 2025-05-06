@@ -1,0 +1,13 @@
+[build]
+  publish = "docs/" # Ensure Netlify serves from the /docs directory
+  functions = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/data/*"
+  to = "/data/:splat"
+  status = 200 

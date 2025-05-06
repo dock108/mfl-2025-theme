@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added global Tailwind theme configuration (colors, fonts) and utility classes (.card, .btn-primary, etc.).
 - Implemented responsive header navigation with burger menu and active link highlighting.
 - Added base component set (Card, Button, Badge, ProbBar) with stories and tests.
+- Created data sourcing strategy document (`docs/data-strategy.md`), MFL API endpoint reference (`docs/endpoints.md`), and example configuration (`src/config.example.js`).
+- Implemented serverless data caching with Netlify Functions (`netlify/functions/fetch-mfl.js`) and a GitHub Actions fallback (`.github/workflows/cache.yml`, `scripts/fetch-mfl-data.js`).
+- Added a client-side fetch wrapper (`src/lib/mflApi.js`) to consume cached data, with corresponding Jest and Playwright tests.
+- Updated `src/config.example.js` with `CACHE_BASE_URL`.
 
 ### Changed
 - Build output directory switched from `/dist`

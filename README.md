@@ -130,82 +130,76 @@ The header navigation is responsive:
 - It adds the `text-accent` class to the active link and ensures other links use `text-text`.
 - This runs on initial page load and whenever the URL hash changes.
 
+## ⚙️ Configuring your League ID & Refresh Cadences
+
+To connect the theme to your specific MFL league and customize data refresh rates, you'll need to configure it.
+
+1.  **Copy the Example Configuration:**
+    Make a copy of `src/config.example.js` and name it `src/config.js`.
+    ```bash
+    cp src/config.example.js src/config.js
+    ```
+2.  **Edit `src/config.js`:**
+    Open `src/config.js` and replace the placeholder `MFL_LEAGUE_ID` with your actual MFL league ID.
+    You can also adjust the `REFRESH_INTERVALS` for how often different types of data should be fetched (values are in milliseconds).
+
+    ```javascript
+    export const MFL_LEAGUE_ID = "YOUR_LEAGUE_ID_HERE"; // Replace with your MFL League ID
+
+    export const REFRESH_INTERVALS = {
+      scores: 30000,        // 30 seconds
+      standings: 3600000,   // 1 hour
+      transactions: 600000, // 10 minutes
+    };
+    ```
+3.  **Important:** Add `src/config.js` to your `.gitignore` file if it's not already there to avoid committing your specific league ID to the repository, especially if the repository is public.
+
+    ```
+    # .gitignore
+    src/config.js
+    ```
+
+This configuration will be used by the data fetching logic (detailed in `docs/data-strategy.md`) to pull information from your league.
+
+## 🚀 Live Data Flow & Setup
+
+This theme uses a serverless caching strategy to fetch and display live MFL data efficiently and reliably.
+
+1.  **Data Fetching (Netlify Function):**
+    *   A Netlify serverless function, defined in `netlify/functions/fetch-mfl.js`, runs on a schedule (configurable via cron expressions in `netlify.toml` or the Netlify UI).
+    *   This function fetches the latest data (scores, standings, transactions, finances) from the MFL API.
+    *   The fetched data is saved as JSON files (e.g., `standings.json`, `scores.json`) into the `docs/data/` directory of your deployed site.
+    *   You will need to set the `MFL_LEAGUE_ID` environment variable in your Netlify site settings for this function to target your league.
+
+2.  **Data Hosting (GitHub Pages):**
+    *   The `docs/data/` directory, containing the cached JSON files, is part of your site published via GitHub Pages.
+    *   This means the cached data is accessible via URLs like `https://<YOUR_USERNAME>.github.io/mfl-2025-theme/data/standings.json`.
+
+3.  **Client-Side Fetching (Fetch Wrapper):**
+    *   The theme's front-end uses a JavaScript wrapper `src/lib/mflApi.js`.
+    *   This wrapper fetches the JSON data files from the GitHub Pages URL (e.g., `https://<YOUR_USERNAME>.github.io/mfl-2025-theme/data/standings.json`).
+    *   It includes in-memory caching to avoid redundant fetches if data hasn't changed or is within its refresh interval (defined in `src/config.js`).
+
+4.  **GitHub Actions Fallback (Cache Workflow):**
+    *   A GitHub Actions workflow defined in `.github/workflows/cache.yml` provides a fallback mechanism for caching data.
+    *   It runs on pushes to the main branch and on a nightly schedule.
+    *   This workflow executes `scripts/fetch-mfl-data.js` (which contains similar logic to the Netlify function) to fetch data and commits any changes directly to the `docs/data/` directory in the repository.
+    *   For this workflow to commit changes, it requires a `MFL_LEAGUE_ID` repository secret and uses the default `GITHUB_TOKEN`.
+    *   **Important for Forks:** If you fork this repository, ensure you enable GitHub Actions (if not enabled by default) and set the `MFL_LEAGUE_ID` secret in your fork's settings for the cache to be updated.
+
+### Deploying with Netlify (Recommended for Scheduled Functions)
+
+To get the automated, scheduled data fetching via Netlify Functions:
+
+1.  Click the button below to deploy this repository to Netlify:
+    [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dock108/mfl-2025-theme) 
+    *(Replace `dock108/mfl-2025-theme` in the URL if your repository URL is different, e.g., after forking)*
+2.  Follow the Netlify setup steps.
+3.  In your new Netlify site's settings (under Build & deploy > Environment), add an environment variable:
+    *   **Key:** `MFL_LEAGUE_ID`
+    *   **Value:** Your MFL league ID (e.g., `12345`)
+4.  Netlify will automatically build your site from the `docs` directory and deploy the function from `netlify/functions`. The scheduled execution of the function is defined by its cron pattern (see comments in `fetch-mfl.js` and `netlify.toml` for guidance on setting this up if not done automatically via a UI).
+
 ## Component Library
 
-Reusable UI components are located in `src/components/` and are showcased in Storybook.
-
-### Card (`Card.jsx`)
-A wrapper component for content sections.
-- Applies `.card`, `.glow-hover`, and `.p-5` classes.
-- Usage: `<Card>Your content here</Card>`
-
-### Button (`Button.jsx`)
-A primary call-to-action button.
-- Uses the `.btn-primary` global style.
-- Supports `disabled` state and other standard button props.
-- Usage: `<Button onClick={handleClick} disabled={false}>Click Me</Button>`
-
-### Badge (`Badge.jsx`)
-For small labels or status indicators.
-- Default style uses the global `.badge` class.
-- `variant="accent"` provides an alternative style with accent background.
-- Usage: `<Badge variant="accent">New</Badge>`
-
-### ProbBar (`ProbBar.jsx`)
-A horizontal bar to display a percentage or probability.
-- Takes a `percentage` prop (0-100).
-- Uses `.deg-bar` for the background and an accent-colored inner bar.
-- Usage: `<ProbBar percentage={75} />`
-
-## Folder Structure
-
-```
-.github/
-  workflows/
-    ci.yml         # GitHub Actions CI configuration
-    deploy.yml     # GitHub Actions deployment to Pages configuration
-docs/             # Build output directory for GitHub Pages
-  index.html      # Main HTML layout for preview
-  main.css        # Compiled CSS for production
-  main.js         # JavaScript for production
-node_modules/
-                  # Project dependencies
-snippets/
-  header.hpm.html # Ready-to-use HTML for MFL Header HPM
-src/
-  components/
-    Badge.jsx
-    Badge.stories.jsx
-    Badge.test.jsx
-    Button.jsx
-    Button.stories.jsx
-    Button.test.jsx
-    Card.jsx
-    Card.stories.jsx
-    Card.test.jsx
-    HelloCard.jsx             # Existing dummy component
-    HelloCard.stories.jsx     # Existing dummy component story
-    HelloCard.test.jsx        # Existing dummy component test
-    ProbBar.jsx
-    ProbBar.stories.jsx
-    ProbBar.test.jsx
-    ResponsiveNav.stories.js  # Story for header nav (might be refactored or part of layout stories)
-  global-styles.test.js # Test for global CSS utilities
-  layout.html       # Main HTML skeleton
-  layout.stories.js # Storybook story for the layout shell
-  layout.test.js    # Jest test for the layout HTML
-  main.js           # Main JavaScript file (burger menu, active links)
-  main.test.js      # Jest tests for main.js
-  styles/
-    index.css     # Main Tailwind CSS input file
-.eslintrc.js        # ESLint configuration
-.gitignore          # Git ignore rules
-.prettierrc.js      # Prettier configuration
-CHANGELOG.md        # Project changelog
-LICENSE             # MIT License
-package-lock.json   # NPM lock file
-package.json        # Project metadata and dependencies
-postcss.config.js   # PostCSS configuration
-README.md           # This file
-tailwind.config.js  # Tailwind CSS configuration
-``` 
+Reusable UI components are located in `
