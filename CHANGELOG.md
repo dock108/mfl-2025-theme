@@ -15,4 +15,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Placeholder CSS and JavaScript for live deployment.
 - GitHub Pages configuration for hosting theme assets.
 - Embed code snippet for league commissioners.
-- Added HTML skeleton (`layout.html`) with basic structure. 
+- Added HTML skeleton (`layout.html`) with basic structure.
+- Added global Tailwind theme configuration (colors, fonts) and utility classes (.card, .btn-primary, etc.). 

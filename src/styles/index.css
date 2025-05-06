@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+body {
+  @apply bg-bg text-text font-sans antialiased;
+}
+
+.card {
+  @apply bg-card rounded-xl shadow-sm shadow-alt p-4; /* Added p-4 for some default padding */
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 6px 1px theme('colors.accent');
+  transition: box-shadow .2s;
+}
+
+.deg-bar {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(50, 227, 192, 0.15);
+}
+
+/* Utility Components */
+.btn-primary {
+  @apply bg-accent text-bg font-semibold py-2 px-4 rounded-lg glow-hover;
+}
+
+.badge {
+  @apply bg-alt text-accent text-xs font-semibold px-2.5 py-0.5 rounded-full;
+}
+
+.pill {
+  @apply bg-card text-text text-sm px-3 py-1 rounded-full border border-alt;
+} 

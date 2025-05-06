@@ -72,6 +72,44 @@ The theme assets are served from GitHub Pages at the following URLs:
 
 This will remove the default MFL styling and allow our custom theme to take effect.
 
+## Theme Configuration (Tailwind CSS)
+
+The theme's visual appearance is primarily controlled by `tailwind.config.js` and `src/styles/index.css`.
+
+### Color Palette
+
+The core color palette defined in `tailwind.config.js` is:
+
+- `bg`: `#22252b` (Main background)
+- `card`: `#2d3038` (Card/container background)
+- `alt`: `#2a2d35` (Alternative background or subtle elements)
+- `accent`: `#32e3c0` (Primary accent color)
+- `text`: `#e3e7ee` (Main text color)
+
+These can be used with Tailwind's utility classes, e.g., `bg-bg`, `text-accent`, `border-card`.
+
+### Typography
+
+- Default font: Inter (sans-serif stack).
+- Applied to the `body` via `@apply font-sans` in `src/styles/index.css`.
+
+### Utility Classes & Components
+
+Several global utility classes and component styles are defined in `src/styles/index.css`:
+
+- `.card`: Applies base styling for card-like containers (`bg-card`, `rounded-xl`, `shadow-sm`, `shadow-alt`, `p-4`).
+  Example: `<div class="card">...</div>`
+- `.glow-hover`: Adds a subtle glow effect on hover using the `accent` color.
+  Can be applied to interactive elements: `<button class="btn-primary glow-hover">...</button>`
+- `.deg-bar`: A decorative gradient bar (often used as a visual accent).
+  Example: `<div class="deg-bar"></div>`
+- `.btn-primary`: Primary button style (`bg-accent`, `text-bg`, padding, rounding, `glow-hover`).
+  Example: `<button class="btn-primary">Click Me</button>`
+- `.badge`: Small, rounded element for displaying status or short info (`bg-alt`, `text-accent`).
+  Example: `<span class="badge">New</span>`
+- `.pill`: Pill-shaped element, often for tags or categories (`bg-card`, `text-text`, `border-alt`).
+  Example: `<span class="pill">Category</span>`
+
 ## Folder Structure
 
 ```
