@@ -1,17 +1,19 @@
-import fetch from 'node-fetch';
-import { writeFile, mkdir } from 'node:fs/promises';
-import path from 'node:path';
+const fetch = require('node-fetch');
+const { writeFile, mkdir } = require('node:fs/promises');
+const path = require('node:path');
 
 // Attempt to import MFL_LEAGUE_ID from a config file if this script is run directly.
 // This is a bit of a heuristic. For GitHub Actions, environment variables are preferred.
 let leagueId;
 try {
-  const config = await import('../src/config.js');
+  // For CommonJS, we can't use dynamic imports easily
+  // Try to require config files
+  const config = require('../src/config.js');
   leagueId = config.MFL_LEAGUE_ID;
 } catch (e) {
   // Fallback if src/config.js doesn't exist or MFL_LEAGUE_ID is not there
   try {
-    const configExample = await import('../src/config.example.js');
+    const configExample = require('../src/config.example.js');
     leagueId = configExample.MFL_LEAGUE_ID;
   } catch (e2) {
     console.warn('Could not load MFL_LEAGUE_ID from config.js or config.example.js');
@@ -70,4 +72,4 @@ if (require.main === module) {
 }
 
 // Export for potential use in other scripts, though the Netlify function will use its own similar logic.
-export default fetchAndSaveMFLData; 
+module.exports = fetchAndSaveMFLData; 

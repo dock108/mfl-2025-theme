@@ -1,0 +1,7 @@
+{
+  "version": "1.0",
+  "error": {
+    "$t": "Invalid league ID 12345"
+  },
+  "encoding": "utf-8"
+}
