@@ -6,6 +6,7 @@ module.exports = {
   ],
   testMatch: [
     '**/src/**/*.test.js', // Look for .test.js files only within src
+    '**/src/**/*.test.jsx' // Also look for .test.jsx files
   ],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$       ': 'identity-obj-proxy',
